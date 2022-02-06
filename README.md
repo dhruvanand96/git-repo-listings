@@ -10,15 +10,14 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 List down the user  and repository details
 
-
 ## Libraries Used
 
- Markup : - Bootstrap 5
-          - ngx-pagiantion
-          - Angular Material
+- Bootstrap 5
+- ngx-pagiantion
+- Angular Material
 
 ## TODO
 
- Markup : - custom pagination module
-          -  breakdown the list componet into mutiple components as we continue development
+ - custom pagination module
+ -  breakdown the list componet into mutiple components as we continue development
 
