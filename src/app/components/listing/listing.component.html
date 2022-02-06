@@ -1,0 +1,98 @@
+<div class="flex-shrink-1 container border border-dark mt-3 mb-3 px-3 g-0">
+    <div class="flex-shrink-1 row justify-content-center mt-3 mb-3 g-0">
+        <div class="col-3 col-md-3 col-sm-12 g-0 nopadding">
+            <div class="userImg" auto-focus="none">
+                <img #Img src="{{
+                    userData.avatar_url ? userData.avatar_url : 'favicon.ico'
+                          }}" alt="..." />
+            </div>
+        </div>
+        <div class="col-9 col-md-9 col-sm-12 g-0 nopadding">
+            <div class="text-start mt-2 g-0">
+                <h2 class="mt-1 mb-0">{{userData.name ? userData.name : 'NA' | titlecase}}</h2>
+                <div class="mt-1">
+                    <p>{{userData.bio ? userData.bio :'NA' | titlecase}}</p>
+                </div>
+                <div class="mt-1">
+                    <p>
+                        <mat-icon><span class="material-icons-outlined">
+                                location_on
+                            </span></mat-icon>
+                        {{userData.location ? userData.location : 'NA' | titlecase}}
+                    </p>
+                </div>
+                <div class="mt-1">
+                    <p>
+                        Twitter:
+                        <a href="{{ userData.twitter_username ? 'https://twitter.com/'+userData.twitter_username : '' }}"
+                            class="hyperLink" target="_blank">{{userData.twitter_username ? 'https://twitter.com/'+userData.twitter_username : 'NA' | titlecase}}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 g-0">
+            <div class="mt-3 g-0">
+                <p>
+                    <mat-icon>
+                        <span class="material-icons-outlined">
+                            link
+                        </span>
+                    </mat-icon>
+                    <a href="{{ userData.html_url ? userData.html_url : '' }}"
+                        class="hyperLink mb-3" target="_blank">{{userData.html_url ? userData.html_url : 'NA' }}
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-0">
+        <div class="col-md-4 col-sm-6" *ngFor="let data of repositories | paginate:{
+            itemsPerPage: recordsPerPage,
+            currentPage: pageSelected,
+            totalItems: userData.public_repos
+          }">
+            <div class="text-start mt-1 mb-1 border border-dark g-0">
+                <div class="mt-1 mb-1 px-2 g-0">
+                    <h2 class="display-2 text-color">{{ data.name | titlecase}}</h2>
+                    <p>{{ data.description ? data.description  : "No description" | titlecase}}</p>
+                    <p>
+                        <a href="{{ data.html_url ? data.html_url : '' }}"
+                            class="hyperLink" target="_blank">{{ data.html_url ? data.html_url : "NA" | titlecase }}</a>
+                    </p>
+                    <div class="badge card-cus text-wrap">
+                        {{ data.language ? data.language : "none" | titlecase }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex mt-1 justify-content-center">
+            <pagination-template #p="paginationApi" (pageChange)="pageChangeHandler($event)">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                      <li class="page-item" [class.disabled]="p.isFirstPage()">
+                        <!-- <a class="page-link" (click)="p.previous()" tabindex="-1" aria-disabled="true">Previous</a> -->
+                        <a class="page-link"  aria-label="Previous" (click)="p.previous()">
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of p.pages" [class.active]="p.getCurrent() === page.value">
+                        <a class="page-link" (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+                            <span>{{ page.label }}</span>
+                        </a>
+                        <a class="page-link" *ngIf="p.getCurrent() === page.value">
+                            <span>{{ page.label }}</span>
+                        </a>
+                    </li>
+                      <li class="page-item" [class.disabled]="p.isLastPage()">
+                        <!-- <a   class="page-link" (click)="p.next()" >Next</a> -->
+                        <a class="page-link"  aria-label="Previous" (click)="p.next()">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                      </li>
+                    </ul>
+                  </nav>
+            </pagination-template>
+        </div>
+    </div>
+</div>

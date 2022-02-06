@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { ListingComponent } from './components/listing/listing.component';
 
-const routes: Routes = [];
+const appRoutes: Routes = [
+  { path: '',component: HomePageComponent,data: {title: 'Home',}},
+  { path: 'list', component: ListingComponent },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(appRoutes, { enableTracing: false, useHash: false }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

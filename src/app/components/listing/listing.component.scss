@@ -1,0 +1,39 @@
+
+.material-icons{
+    font-size: 15px;
+}
+
+
+.text-color{
+    color: #2196f3
+}
+
+p {
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  .card-cus{
+      --bs-bg-opacity: 1;
+      background-color: #0069c0;
+      color: white;
+  }
+
+  .Box {
+    background-color: var(--color-canvas-default);
+    border-color: var(--color-border-default);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+ }
+
+  .pinned-item-list-item-content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+ }
